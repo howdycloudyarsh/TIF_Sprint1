@@ -18,3 +18,20 @@ terraform apply --auto-approve
 ![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/89f1948a-d683-48b4-9036-bfb930204c95)
 
 ### Jenkins get installed on the ec2 automatically as install_jenkins.sh file runs as user data.
+
+### Copy the website url and put it in the browser to access the Jenkins Homepage.
+
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/dadc2784-c0ae-4a1c-80a7-fea66de42a6b)
+
+### Connect the EC2 Server to find the password and Unlock Jenkins.
+
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/b20072b0-7e6e-4e31-a212-506ccad183f6)
+
+### Installation of suggested plugins get started.
+
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/7ab23a14-3d1f-44a8-a512-7bcc0625723b)
+
+
+
+
+
