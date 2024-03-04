@@ -78,6 +78,10 @@
 
 ![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/3e67b17b-5682-47e4-b51a-f0efe8c8cfa8)
 
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/b78b9645-216f-45d7-87d2-ea080a8ab2db)
+
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/d6f82718-e1ab-4c13-996a-af87d4d86a3c)
+
 
 
 
