@@ -5,7 +5,7 @@
 ### _Step 1._
 
 #### Create an EKS cluster
-=============================
+
 Name: ekscluster-01
 Use K8S version 1.28   # Any desired K8 Version.
 
@@ -48,10 +48,10 @@ Use K8S version 1.28   # Any desired K8 Version.
 ![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/0e7f6539-2547-4c0f-b05f-534c7f6dcfd2)
 
 #### Select the role you already created. Leave default values for everything else
-#### AMI - choose the default 1 (Amazon Linux 2)
-#### change desired/minimum/maximum to 1 (from 2)
-#### Enable SSH access. Choose a security group which allwos 22, 80, 8080
-#### Choose default values for other fields 
+#### >> AMI - choose the default 1 (Amazon Linux 2)
+#### >> change desired/minimum/maximum to 1 (from 2)
+#### >> Enable SSH access. Choose a security group which allwos 22, 80, 8080
+#### >> Choose default values for other fields 
 
 #### Node group creation may take 2-3 minutes.
 
