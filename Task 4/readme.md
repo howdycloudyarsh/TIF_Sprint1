@@ -4,103 +4,197 @@
 
 ### _Step 1._
 
-### >>> Create IAM role for EKS Cluster.
+#### Create an EKS cluster
+=============================
+Name: ekscluster-01
+Use K8S version 1.28   # Any desired K8 Version.
 
-#### Go to IAM >> roles >> create roles , choose EKS as use case.
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/bdc70cf1-e0e6-4620-ad73-8ed063ab299c)
 
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/49e37866-6af8-4027-9180-ac332b677827)
+#### Create an IAM role 'eks-cluster-role' with 1 policy attached: AmazonEKSClusterPolicy
 
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/4a5a7ae8-a65f-4aca-a64b-56db85d0a6a6)
-
-#### In the permission section leave it as default.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/4e877738-3438-42e8-83a2-b5b5c544b5ce)
-
-#### Give the role name and click on create.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/7454e40b-89f5-4d2c-a6d3-e0c46343cbc7)
-
-#### It gets created.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/1d61b2db-57cc-4c54-8e28-29de32364d6d)
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/6f679944-8f33-425c-adae-6c27518cb955)
 
 
-### _Step 2._
+#### Create another IAM role 'eks-node-grp-role' with 3 policies attached: (Allows EC2 instances to call AWS services on your behalf.)    - AmazonEKSWorkerNodePolicy    - AmazonEC2ContainerRegistryReadOnly    - AmazonEKS_CNI_Policy
 
-### >>> Create Dedicated VPC for the EKS Cluster.
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/0155299a-7a6c-4d84-bdf6-1cac9246e3e4)
 
-#### Go to Cloudformation to create a vpc through template. Create stack and upload the template file.
+#### Choose default VPC, Choose 2 or 3 subnets.
 
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/985281e7-47f2-4b7b-8b82-69feb4949c11)
-
-#### Provide the Stack name and leave everything default and click on next.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/7fd3f7d8-4631-45d9-9c00-7f52d896946c)
-
-#### Leave the confiure stack pageas as it is and click on next.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/4ccf1e8e-fd32-467c-9eda-1e48be2e8bab)
-
-#### Click on submit on review and create page.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/3eed5a14-9150-4c7b-8611-95148946b50e)
-
-#### Once the creation is completed then got to VPC service to check and confirm.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/a3ac4b1b-b1ac-456b-a792-383a0288385e)
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/7de3624a-5c2d-4bc5-997f-a204db3377e5)
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/05e5ec82-9c03-4a49-89ba-596ac910871f)
 
 
-### _Step 3._
+#### Choose a security group which open the ports 22, 80, 8080, cluster endpoint access: public
 
-### >>> Create EKS Cluster.
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/b5b77100-5a1c-4c45-8b65-137c576816fb)
 
-#### Go to EKS service and click on cluster then add cluster then create.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/40202fd4-019b-4780-a781-20f9f0eee630)
-
-#### Provide the name , Kubernetes version and then select the specified role which has been created and click on next.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/4311e7cd-437d-4de9-a976-1a2cafa3d5ec)
-
-#### In the networking page select the correct VPC and Security Group created.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/23c7f21f-bf48-4da3-b5ff-6797e8b8ba66)
-
-#### Choose "Public & Private" in Cluster Endpoint Access. Then Click On Next.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/05f47d32-d999-4cff-96c6-0583fdbf136f)
-
-#### On the "Configure observability" page choose as per your requirements, then click on NEXT.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/a556e081-58bc-4eaf-b294-2184f9a7fa6a)
-
-#### Leave as default on EKS add-ons page click on NEXT and then Create.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/676a4308-f7fc-46b4-82b8-878428e4be67)
-
-#### After a few minutes it gets craeted.
-
-![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/107dd64d-27db-4485-aa5b-3a8ce8c0f260)
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/e0f022f4-e068-43e2-9391-97a5042fd2b9)
 
 
-### _Step 4._
+##### For VPC CNI, CoreDNS and kube-proxy, choose the default versions, For CNI, latest and default are different. But go with default.
 
-### >>> Install and setup IAM Authenticator and kubectl Utility.
+#### Click 'Create'. This process will take 10-12 minutes. Wait till your cluster shows up as Active. 
 
-#### Should have an ec2 instance on which AWS cli is pre-installed.
+
+### _Step 2._ 
+
+#### Add Node Groups to our cluster
+======================================
+#### Now, lets add the worker nodes where the pods can run.
+
+#### Open the cluster > Compute > Add NodeGrp Name: eksnodegrp01
+
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/0e7f6539-2547-4c0f-b05f-534c7f6dcfd2)
+
+#### Select the role you already created. Leave default values for everything else
+#### AMI - choose the default 1 (Amazon Linux 2)
+#### change desired/minimum/maximum to 1 (from 2)
+#### Enable SSH access. Choose a security group which allwos 22, 80, 8080
+#### Choose default values for other fields 
+
+#### Node group creation may take 2-3 minutes.
+
+### _Step 3._ 
+
+#### Authenticate to this cluster
+===================================
+
+#### Reference: https://docs.aws.amazon.com/eks/latest/userguide/create-kubeconfig.html
+
+#### Open cloudshell
+
+#### Type on your AWS CLI window ; "aws sts get-caller-identity"
+
+#### Observe your account and user id details.
+
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/9fb6f422-c6ef-40c4-8b4f-5e80944b874b)
+
+#### Create a  kubeconfig file where it stores the credentials for EKS:
+
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/2c9e6b64-8169-47b4-a8d9-f2ca2bcc758a)
+
+#### kubeconfig configuration allows you to connect to your cluster using the kubectl command line.
+
+#### aws eks update-kubeconfig --region region-code --name my-cluster  // Use the cluster name you just created
 
 
 
+#### see if you can get the nodes you created
+#### kubectl get nodes
+
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/18749906-f88d-4a5a-b726-c12ac9cfea53)
 
 
+### _Step 4._ 
+
+#### Create a new POD in EKS for the 2048 game
+================================================
+
+#### create the config file in YAML to deploy 2048 game pod into the cluster
+```` 
+vi 2048-pod.yaml
+````
+````
+### code starts ###
+
+apiVersion: v1
+kind: Pod
+metadata:
+   name: 2048-pod
+   labels:
+      app: 2048-ws
+spec:
+   containers:
+   - name: 2048-container
+     image: blackicebird/2048
+     ports:
+       - containerPort: 80
+
+### code ends ###
+````
+
+#### apply the config file to create the pod
+
+```` 
+kubectl apply -f 2048-pod.yaml
+````
+#pod/2048-pod created
+
+#### view the newly created pod
+
+```` 
+kubectl get pods
+````
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/124dbb8b-237c-4668-83d0-519b107149a2)
 
 
+### _Step 5._
+
+#### Setup Load Balancer Service
+===================================
+````
+vi mygame-svc.yaml  
+````
+
+````
+### code starts ###
+
+apiVersion: v1
+kind: Service
+metadata:
+   name: mygame-svc
+spec:
+   selector:
+      app: 2048-ws
+   ports:
+   - protocol: TCP
+     port: 80
+     targetPort: 80
+   type: LoadBalancer
+
+### code ends ###
+````
+
+#### Apply the config file
+````
+kubectl apply -f mygame-svc.yaml
+````
+#### View details of the modified service
+````
+kubectl describe svc mygame-svc
+````
+
+#### Access the LoadBalancer Ingress on the kops instance
+````
+curl <LoadBalancer_Ingress>:<Port_number>
+````
+
+#### Go to EC2 console. get the DNS name of ELB and paste the DNS into address bar of the browser.
+
+#### It will show the 2048 game. You can play.
+
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/3489d5ac-1c98-4805-b5b0-4428435e547c)
 
 
+### _Step 6._ 
+
+#### Cleanup
+---------------
+
+#### Clean up all the resources created in the task
+````
+kubectl get pods
+kubectl delete -f 2048-pod.yaml
+````
+
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/3b3a73bf-249f-40f2-ba22-f594c851039b)
 
 
+````
+kubectl get services
+kubectl delete -f mygame-svc.yaml
+````
 
-
+![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/1693d863-36e5-4127-ae22-ebe06860f5d8)
 
