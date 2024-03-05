@@ -7,6 +7,7 @@
 #### Create an EKS cluster
 
 Name: ekscluster-01
+
 Use K8S version 1.28   # Any desired K8 Version.
 
 ![image](https://github.com/howdycloudyarsh/TIF_Sprint1/assets/133496386/bdc70cf1-e0e6-4620-ad73-8ed063ab299c)
