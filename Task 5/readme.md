@@ -1,2 +1,2 @@
-# Deploy Kubernetes on AWS with Terrafrom.
+# Deploy Kubernetes on AWS with Terraform.
 
